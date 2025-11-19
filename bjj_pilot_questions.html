@@ -8,64 +8,109 @@
     body { font-family: -apple-system, system-ui, sans-serif; margin: 24px; background: #0f172a; color: #e5e7eb; }
     h1 { color: #e5e7eb; font-size: 1.6rem; margin-bottom: 0.5rem; }
     p { color: #9ca3af; }
-    .section { margin-bottom: 24px; padding: 16px; border-radius: 12px; background: #02061780; border: 1px solid #1f2937; }
+    .section { margin-bottom: 20px; padding: 16px; border-radius: 12px; background: #02061780; border: 1px solid #1f2937; }
     label { font-weight: 600; display: block; margin-bottom: 8px; }
-    ul { margin: 0; padding-left: 18px; }
-    li { margin: 2px 0; }
+    .options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .option-pill {
+      background: #020617;
+      border-radius: 999px;
+      padding: 6px 12px;
+      border: 1px solid #1f2937;
+      font-size: 0.9rem;
+    }
+    .option-pill input {
+      margin-right: 6px;
+    }
+    button {
+      width: 100%;
+      margin-top: 8px;
+      background: #22c55e;
+      color: #022c22;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    button:active { transform: scale(0.98); }
+    #thanks {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #022c22;
+      color: #bbf7d0;
+      font-size: 0.95rem;
+    }
     small { color: #6b7280; }
   </style>
 </head>
 <body>
   <h1>BJJ Pilot – Känslostatus</h1>
-  <p><small>Prototypvy för Hilti BJJ Västerås – svar sker muntligt/mentalt i denna version.</small></p>
+  <p><small>Välj ett alternativ per rad. Allt är anonymt och inget sparas i denna prototyp.</small></p>
 
-  <div class="section">
-    <label>1. Vilket känslotillstånd hade du <u>innan</u> passet?</label>
-    <ul>
-      <li>Stressad</li>
-      <li>Orolig</li>
-      <li>Lugn</li>
-      <li>Taggad</li>
-      <li>Självsäker</li>
-      <li>Trött</li>
-      <li>Nervös</li>
-    </ul>
+  <form id="bjj-form" onsubmit="handleSubmit(event)">
+    <div class="section">
+      <label>1. Vilket känslotillstånd hade du <u>innan</u> passet?</label>
+      <div class="options">
+        <label class="option-pill"><input type="radio" name="before" value="Stressad">Stressad</label>
+        <label class="option-pill"><input type="radio" name="before" value="Orolig">Orolig</label>
+        <label class="option-pill"><input type="radio" name="before" value="Lugn">Lugn</label>
+        <label class="option-pill"><input type="radio" name="before" value="Taggad">Taggad</label>
+        <label class="option-pill"><input type="radio" name="before" value="Självsäker">Självsäker</label>
+        <label class="option-pill"><input type="radio" name="before" value="Trött">Trött</label>
+        <label class="option-pill"><input type="radio" name="before" value="Nervös">Nervös</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>1b. Vilket känslotillstånd har du <u>efter</u> passet?</label>
+      <div class="options">
+        <label class="option-pill"><input type="radio" name="after" value="Stressad">Stressad</label>
+        <label class="option-pill"><input type="radio" name="after" value="Orolig">Orolig</label>
+        <label class="option-pill"><input type="radio" name="after" value="Lugn">Lugn</label>
+        <label class="option-pill"><input type="radio" name="after" value="Taggad">Taggad</label>
+        <label class="option-pill"><input type="radio" name="after" value="Självsäker">Självsäker</label>
+        <label class="option-pill"><input type="radio" name="after" value="Trött">Trött</label>
+        <label class="option-pill"><input type="radio" name="after" value="Nervös">Nervös</label>
+        <label class="option-pill"><input type="radio" name="after" value="Tillfredsställd">Tillfredsställd</label>
+        <label class="option-pill"><input type="radio" name="after" value="Glad">Glad</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>2. Hur trygg kände du dig under sparring?</label>
+      <div class="options">
+        <label class="option-pill"><input type="radio" name="sparring" value="Orolig">Orolig</label>
+        <label class="option-pill"><input type="radio" name="sparring" value="Stabil">Stabil</label>
+        <label class="option-pill"><input type="radio" name="sparring" value="Trygg">Trygg</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>3. Vad behöver du mer av nästa pass?</label>
+      <div class="options">
+        <label class="option-pill"><input type="radio" name="next" value="Teknik">Teknik</label>
+        <label class="option-pill"><input type="radio" name="next" value="Tempo">Tempo</label>
+        <label class="option-pill"><input type="radio" name="next" value="Lugn">Lugn</label>
+        <label class="option-pill"><input type="radio" name="next" value="Självförtroende">Självförtroende</label>
+      </div>
+    </div>
+
+    <button type="submit">Skicka reflektion</button>
+  </form>
+
+  <div id="thanks">
+    Tack för din reflektion 💭  
+    <br><small>Du kan stänga sidan nu eller låta nästa person scanna och svara.</small>
   </div>
 
-  <div class="section">
-    <label>1b. Vilket känslotillstånd har du <u>efter</u> passet?</label>
-    <ul>
-      <li>Stressad</li>
-      <li>Orolig</li>
-      <li>Lugn</li>
-      <li>Taggad</li>
-      <li>Självsäker</li>
-      <li>Trött</li>
-      <li>Nervös</li>
-      <li>Tillfredsställd</li>
-      <li>Glad</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <label>2. Hur trygg kände du dig under sparring?</label>
-    <ul>
-      <li>Orolig</li>
-      <li>Stabil</li>
-      <li>Trygg</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <label>3. Vad behöver du mer av nästa pass?</label>
-    <ul>
-      <li>Teknik</li>
-      <li>Tempo</li>
-      <li>Lugn</li>
-      <li>Självförtroende</li>
-    </ul>
-  </div>
-
-  <p><small>Detta är en prototyp för känsloreflektion – ingen data sparas i denna version.</small></p>
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('bjj-form').style.display = 'none';
+      document.getElementById('thanks').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
